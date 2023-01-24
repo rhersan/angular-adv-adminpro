@@ -1,14 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { NotpagefoundComponent } from './pages/notpagefound/notpagefound.component';
-
+import { NotpagefoundComponent } from './notpagefound/notpagefound.component';
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./pages/pages-routing.module').then(m => m.PagesRoutingModule) },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
+  { path: '', loadChildren: () => import('./pages/pages.routing').then(m => m.PagesRoutingModule) },
+  { path: '', loadChildren: () => import('./auth/auth.routing').then(m => m.AuthRoutingModule) },
   { path: '404', component: NotpagefoundComponent},
   { path: '**', redirectTo: '404'}
 ];
