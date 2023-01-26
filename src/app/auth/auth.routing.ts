@@ -26,4 +26,6 @@ const ChilRoute: Routes = [
     RouterModule
   ]
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {
+  
+ }
