@@ -17,7 +17,6 @@ interface ISubmenuItem{
 export class SidebarService {
 
   constructor() { 
-    console.log(this.menu);
   }
 
   menu: IMenuItem[] = [
@@ -29,6 +28,7 @@ export class SidebarService {
         { title: 'ProgresBar', url: 'progress'},
         { title: 'Gráficas', url: 'grafica1'},
         { title: 'Promesas', url: 'promesas'},
+        { title: 'RXJS', url: 'rxjs'},
       ]
     },
   ];

@@ -10,7 +10,14 @@ import { resolveObjectKey } from 'chart.js/dist/helpers/helpers.core';
 export class PromesasComponent implements OnInit {
 
   ngOnInit(): void {
-    const promesa = new Promise(( resolve, reject ) => {
+
+    this.getUsuarios().then( usuarios => {
+      console.log(usuarios);
+    });
+
+    //this.getUsuarios();
+
+    /*const promesa = new Promise(( resolve, reject ) => {
 
       if(false){
         resolve('Hola Mundo');
@@ -25,7 +32,18 @@ export class PromesasComponent implements OnInit {
     })
     .catch(error => console.log('Error en mi promesa: ',error));
 
-    console.log('Fin del Init');
+    console.log('Fin del Init');*/
 
+  }
+
+  getUsuarios(){
+
+   return new Promise( (resolve, reject) => {
+
+      fetch('https://reqres.in/api/users?page=2')
+            .then( resp => resp.json())
+            .then( body => resolve(body.data));
+      
+    });
   }
 }
