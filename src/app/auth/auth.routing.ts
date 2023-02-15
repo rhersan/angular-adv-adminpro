@@ -10,8 +10,7 @@ const ChilRoute: Routes = [
     component: AuthComponent,
     children:[
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: '**', redirectTo:'404'}
+      { path: 'register', component: RegisterComponent }
     ]
 }
 ]
