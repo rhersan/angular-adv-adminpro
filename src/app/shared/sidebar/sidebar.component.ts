@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { SidebarService } from '../../services/sidebar.service';
+import { UsuarioService } from '../../services/usuario.service';
+import { Usuario } from '../../models/usuario.model';
 
 
 @Component({
@@ -10,9 +12,17 @@ import { SidebarService } from '../../services/sidebar.service';
 })
 export class SidebarComponent {
 
+  public usuario!: Usuario;
   public menu: any = null!;
-
-  constructor(private sidebarService:SidebarService) {
+  constructor(private sidebarService:SidebarService,
+              private _usuarioService: UsuarioService) {
     this.menu = this.sidebarService.menu;
+
+    this.usuario = _usuarioService.usuario;
+  }
+
+  logout(){
+    console.log('logout');
+    this._usuarioService.logout();
   }
 }

@@ -9,6 +9,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 const childRoute: Routes = [
   {
@@ -23,7 +24,7 @@ const childRoute: Routes = [
       { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajustes de Cuenta'} }, 
       { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas'} },
       { path: 'rxjs', component: RxjsComponent, data: { titulo: 'Rxjs'} },
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+      { path: 'perfil', component: PerfilComponent, data: { titulo: 'Perfil'}} ,
     ]
   }
 ];

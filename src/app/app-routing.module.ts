@@ -5,8 +5,8 @@ import { NotpagefoundComponent } from './notpagefound/notpagefound.component';
 const routes: Routes = [
   { path: 'dashboard', loadChildren: () => import('./pages/pages.routing').then(m => m.PagesRoutingModule) },
   { path: 'auth', loadChildren: () => import('./auth/auth.routing').then(m => m.AuthRoutingModule) },
-  { path: '404', component: NotpagefoundComponent},
-  { path: '**', redirectTo: '404'},
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  { path: '**', component: NotpagefoundComponent},
 ];
 @NgModule({
   declarations: [],
