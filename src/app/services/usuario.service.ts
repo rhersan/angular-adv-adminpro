@@ -2,14 +2,14 @@ import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
-import { tap, map, Observable, catchError, of } from 'rxjs';
+import { tap, map, Observable, catchError, of, delay } from 'rxjs';
 
 import { IRegisterForm } from '../interfaces/register-form.interfaces';
 import { ILoginForm } from '../interfaces/login-form.interfaces';
 import { Usuario } from '../models/usuario.model';
+import { IResponseList } from '../interfaces/response.interfaces';
 
 declare const google: any;
-declare const gapi: any;
 const base_url = environment.base_url;
 
 @Injectable({
@@ -36,6 +36,14 @@ export class UsuarioService {
     return this.usuario.role!;
   }
 
+  get headers(){
+    return {
+      headers: {
+        'x-token': this.token
+      }
+    }
+  }
+
   logout(){
     localStorage.removeItem('token');    
 
@@ -55,11 +63,7 @@ export class UsuarioService {
     });
 
     const url = `${base_url}/login/renew`;
-    return this.http.get(url,{
-      headers: {
-        'x-token': this.token
-      }
-    })
+    return this.http.get(url,this.headers)
     .pipe(
       map( (resp: any) => {
         const { nombre, email, role, img = '', uid, google, status } = resp.usuario;
@@ -85,17 +89,12 @@ export class UsuarioService {
   }
 
   actualizarPerfil(data: { email: string, nombre: string, role?:string } ){
-
-    // if(data.email === this.usuario.email && data.nombre === this.usuario.nombre){
-    //   return Observable;
-    // }
     const url = `${base_url}/usuarios/${this.uid}`;
-    data.role = this.rol;
-    return this.http.put(url, data, {
-      headers: {
-      'x-token': this.token
-      }
-    });
+    data = {
+      ...data,
+      role: this.usuario.role
+    }
+    return this.http.put(url, data, this.headers);
     
 
   }
@@ -119,4 +118,31 @@ export class UsuarioService {
           })
         );
   }
+
+  cargarUsuario(desde: number = 0):Observable<IResponseList>{
+    const url = `${base_url}/usuarios?desde=${desde}`;
+    return this.http.get<IResponseList>(url,this.headers)
+            .pipe(
+              map( resp => {
+                const usuarios = resp.usuarios.map(user => new Usuario(user.nombre,user.email,user.status, user.google, user.role, user.img, '',user.uid));
+                return {
+                  ok: resp.ok,
+                  total: resp.total,
+                  usuarios: usuarios
+                }
+              })
+            );
+  }
+
+  eliminarUsuario(id: string){
+    const url = `${base_url}/usuarios/${id}`;
+    return this.http.delete(url, this.headers);
+
+  }
+
+  guardarUsuario(usuario: Usuario){
+    const url = `${base_url}/usuarios/${usuario.uid}`;
+    return this.http.put(url, usuario, this.headers);
+  }
+
 }
