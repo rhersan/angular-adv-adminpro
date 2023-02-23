@@ -76,7 +76,7 @@ export class MedicosComponent implements OnInit {
   }
 
   editar(id:string){
-    this.route.navigateByUrl(`/dashboard/medico/nuevo/${id}`);
+    this.route.navigateByUrl(`/dashboard/medico/${id}`);
   }
 
   eliminar(medico: Medico){

@@ -138,7 +138,10 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     this._usuarioService.guardarUsuario(usuario)
         .subscribe({
           next: (resp) => {
-            console.log(resp);
+            Swal.fire('Actualizado!',
+              `El rol del usuario "${usuario.nombre}" se ha actualizado!`,
+              'success'
+              );
           },
           error: (err) => {
             console.log(err);

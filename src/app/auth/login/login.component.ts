@@ -47,7 +47,6 @@ export class LoginComponent implements AfterViewInit {
             }else{
               localStorage.removeItem('email');
             }
-            console.log('Login normal');
             // Navegar al Dashboar
             this.ngZone.run( () => {
               this.router.navigateByUrl('/dashboard');
@@ -66,7 +65,6 @@ export class LoginComponent implements AfterViewInit {
   }
 
   googleInit(){
-    console.log('google init');
     google.accounts.id.initialize({
       client_id: "14725285314-sjtueidoev71ie5htanqb4kp4143gdf2.apps.googleusercontent.com",
       callback: (response: any) =>  this.handleCredentialResponse(response)
@@ -78,13 +76,11 @@ export class LoginComponent implements AfterViewInit {
   }
 
   handleCredentialResponse(response: any){    
-
+    console.log('token-google', response.credential);
     this._usuarioService.loginGoogle(response.credential)
         .subscribe({
           next: (resp: any) => {
-            console.log({login: resp});
             if(resp.ok){
-              console.log(resp.msg);
               // Navegar al Dashboar
               this.ngZone.run( () => {
                 this.router.navigateByUrl('/dashboard');

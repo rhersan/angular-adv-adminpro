@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../../services/sidebar.service';
 import { UsuarioService } from '../../services/usuario.service';
 import { Usuario } from '../../models/usuario.model';
@@ -10,19 +10,19 @@ import { Usuario } from '../../models/usuario.model';
   styles: [
   ]
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
 
   public usuario!: Usuario;
   public menu: any = null!;
-  constructor(private sidebarService:SidebarService,
+  constructor(public sidebarService:SidebarService,
               private _usuarioService: UsuarioService) {
-    this.menu = this.sidebarService.menu;
-
-    this.usuario = _usuarioService.usuario;
+  }
+  ngOnInit(): void {
+    this.menu = this.sidebarService.getMenu();
+    this.usuario = this._usuarioService.usuario;
   }
 
   logout(){
-    console.log('logout');
     this._usuarioService.logout();
   }
 }

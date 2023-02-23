@@ -14,8 +14,6 @@ constructor(private _usuarioService: UsuarioService,
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
-
-      console.log('Paso por el canActivate del guard');
       return this._usuarioService.validarToken()
         .pipe(
           tap(estaAutenticado => {

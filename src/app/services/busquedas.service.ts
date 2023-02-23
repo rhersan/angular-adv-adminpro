@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { UsuarioService } from './usuario.service';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { IResponseList } from '../interfaces/response.interfaces';
 import { Usuario } from '../models/usuario.model';
 import { Hospital } from '../models/hospital.model';
 import { Medico } from '../models/medico.model';
+import { IBusquedas } from '../interfaces/busquedas.interfaces';
 
 const base_url = environment.base_url;
 
@@ -72,6 +73,11 @@ export class BusquedasService {
               }  
               )
             );
+  }
+
+  buscadorGlobal(termino: string):Observable<IBusquedas>{
+    const url = `${base_url}/todo/${termino}`;
+    return this.http.get<IBusquedas>(url,this.headers);
   }
 
 

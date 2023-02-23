@@ -34,7 +34,6 @@ get uid():string{
       nombre: [this.usuario.nombre || '', Validators.required],
       email: [this.usuario.email || '', [Validators.required, Validators.email] ]
     });
-    console.log(this.imgTemp);
   }
 
   actualizarPerfil(){

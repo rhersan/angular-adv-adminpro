@@ -32,7 +32,7 @@ export class UsuarioService {
     return this.usuario.uid!;
   }
 
-  get rol(): string {
+  get rol(): 'ADMIN_ROLE' | 'USER_ROLE' {
     return this.usuario.role!;
   }
 
@@ -46,7 +46,8 @@ export class UsuarioService {
 
   logout(){
     localStorage.removeItem('token');    
-
+    localStorage.removeItem('menu');
+    
     google.accounts.id.revoke(this.usuario.email, () => {  
       this.ngZone.run( () => {
         this.router.navigateByUrl('/auth/login');
@@ -68,7 +69,7 @@ export class UsuarioService {
       map( (resp: any) => {
         const { nombre, email, role, img = '', uid, google, status } = resp.usuario;
         this.usuario = new Usuario(nombre, email,status,google,role,img,'',uid);        
-        localStorage.setItem('token', resp.token);
+        this.guardarLocalStorage(resp.token, resp.menu);
         return true;
       }),      
       catchError( error => {
@@ -83,7 +84,7 @@ export class UsuarioService {
     return this.http.post(`${ base_url}/usuarios`, formData)
             .pipe(
               tap( (resp:any) => {
-                localStorage.setItem('token', resp.token);
+                this.guardarLocalStorage(resp.token, resp.menu);
               })
             );
   }
@@ -104,7 +105,7 @@ export class UsuarioService {
     return this.http.post(url, formData)
             .pipe(
               tap( (resp:any) => {
-                localStorage.setItem('token', resp.token);
+                this.guardarLocalStorage(resp.token, resp.menu);
               })
             );
   }
@@ -114,7 +115,7 @@ export class UsuarioService {
     return this.http.post(url,{token})
         .pipe(
           tap( (resp: any) => {
-            localStorage.setItem('token', resp.token);
+            this.guardarLocalStorage(resp.token, resp.menu);
           })
         );
   }
@@ -143,6 +144,11 @@ export class UsuarioService {
   guardarUsuario(usuario: Usuario){
     const url = `${base_url}/usuarios/${usuario.uid}`;
     return this.http.put(url, usuario, this.headers);
+  }
+
+  guardarLocalStorage(token:string, menu: any){
+    localStorage.setItem('token', token);
+    localStorage.setItem('menu', JSON.stringify(menu));
   }
 
 }

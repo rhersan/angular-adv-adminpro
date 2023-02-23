@@ -1,0 +1,127 @@
+<div class="row animated fadeIn fast">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+            <h3>Usuarios</h3>
+
+            <div *ngIf="usuarios.length==0 else listUsuarios"
+                 class="alert alert-info animated fadeIn fast">
+                <p class="mb-0">
+                    No hay usuaios con ese término
+                </p>
+            </div>
+
+            <ng-template #listUsuarios>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let usuario of usuarios"
+                                class="animated fadeIn fast">
+                                <td class="text-center">
+                                    <img [src]="usuario.img! | imagen: 'usuarios'"
+                                         alt=""
+                                         class="img-circle avatar"
+                                         >
+                                </td>
+                                <td>{{usuario.nombre}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </ng-template>
+            
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+            <h3>Medicos</h3>
+
+            <div *ngIf="medicos.length == 0; else listMedicos"
+                 class="alert alert-info animated fadeIn fast">
+                <p class="mb-0">
+                    No hay medicos con ese término
+                </p>
+            </div>
+
+            <ng-template #listMedicos>                
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let medico of medicos"
+                                class="animated fadeIn fast cursor"
+                                (click)="abrirMedico(medico.uid!)">
+                                <td class="text-center">
+                                    <img [src]="medico.img! | imagen: 'medicos'"
+                                        alt=""
+                                        class="img-circle avatar"
+                                        >
+                                </td>
+                                <td>{{ medico.nombre }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </ng-template>
+            
+
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+            <h3>Hospitales</h3>
+
+            <div *ngIf="hospitales.length == 0; else listHospitales"
+                 class="alert alert-info animated fadeIn fast">
+                <p class="mb-0">
+                    No hay hospitales con ese término
+                </p>
+            </div>
+            
+            <ng-template #listHospitales>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let hospital of hospitales"
+                                class="animated fadeIn fast">
+                                <td class="text-center">
+                                    <img [src]="hospital.img! | imagen: 'hospitales'"
+                                         alt=""
+                                         class="img-circle avatar">
+                                </td>
+                                <td>{{hospital.nombre}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </ng-template>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
