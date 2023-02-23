@@ -48,4 +48,9 @@ export class MedicoService {
     const url = `${base_url}/medicos/${medico.uid}`;
     return this.http.put(url, medico, this.headers);
   }
+
+  eliminar(id:string){
+    const url = `${base_url}/medicos/${id}`;
+    return this.http.delete(url, this.headers);
+  }
 }

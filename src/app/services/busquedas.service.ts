@@ -6,6 +6,7 @@ import { map } from 'rxjs';
 import { IResponseList } from '../interfaces/response.interfaces';
 import { Usuario } from '../models/usuario.model';
 import { Hospital } from '../models/hospital.model';
+import { Medico } from '../models/medico.model';
 
 const base_url = environment.base_url;
 
@@ -39,9 +40,14 @@ export class BusquedasService {
   }
 
   private transformarHospitales(resultados: any[]): Hospital[]{
-
     return resultados.map(
       h => new Hospital(h.nombre,h.status, h.Usuario, h.img, h.uid)
+    );
+  }
+
+  private tranformarMedicos(resultados: any[]): Medico[]{
+    return resultados.map(
+      m => new Medico(m.nombre, m.status, m.hospital, m.usuario, m.img, m.uid)
     );
   }
 
@@ -58,6 +64,8 @@ export class BusquedasService {
                     return this.transformarUsuarios(resultados);
                   case 'hospitales':
                     return this.transformarHospitales(resultados);
+                  case 'medicos':
+                    return this.tranformarMedicos(resultados);
                     default:
                       return [];
                 }
