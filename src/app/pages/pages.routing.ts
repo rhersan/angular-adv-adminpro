@@ -16,6 +16,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { MedicoComponent } from './mantenimientos/medicos/medico.component';
 
 
 
@@ -38,6 +39,8 @@ const childRoute: Routes = [
       { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Usuarios'} },
       { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Hospitales'} },
       { path: 'medicos', component: MedicosComponent, data: { titulo: 'Medicos'} },
+      { path: 'medico/nuevo', component: MedicoComponent, data: { titulo: 'Crear Medico'} },
+      { path: 'medico/nuevo/:id', component: MedicoComponent, data: { titulo: 'Crear Medico'} },
     ]
   },
 ];

@@ -34,7 +34,7 @@ export class ModalImagenService {
     this.tipo = tipo;
     this.id = id;
     this.img = img!;
-
+    
     if (!img) {
       this.img = `${base_url}/upload/usuarios/noimage`;
     }else if(img?.includes('https')){
