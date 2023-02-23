@@ -3,8 +3,24 @@
     <div class="col-lg-6 animated fadeIn fast">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Médico</h4>
-                <h6 class="card-subtitle">Actualizar Información</h6>
+
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Médico</h4>
+                        <h6 class="card-subtitle">Actualizar Información</h6>
+                    </div>
+
+                    <div class="col">
+                        <div class="text-right">
+                            <button class="btn btn-info"
+                                    (click)="regresar()">
+                                <i class="fa fa-undo"></i>
+                                Regresar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
 
                 <form class="form-horizontal p-t-20"
                       [formGroup]="medicoForm"

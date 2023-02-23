@@ -81,8 +81,6 @@ export class MedicoComponent implements OnInit, OnDestroy{
   }
 
   cargarMedico(id: string){
-    console.log('id',id);
-    
     if(!id){
       return;
     }
@@ -152,5 +150,8 @@ export class MedicoComponent implements OnInit, OnDestroy{
     }
   }
 
+  regresar(){
+    this.router.navigateByUrl('/dashboard/medicos');
+  }
 
 }

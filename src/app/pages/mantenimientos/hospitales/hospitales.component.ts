@@ -89,7 +89,7 @@ export class HospitalesComponent implements OnInit,OnDestroy {
 
     if (this.desde <= 0) {
       this.desde = 0
-    } else if (this.desde > this.totalHospitales) {
+    } else if (this.desde >= this.totalHospitales) {
       this.desde -= valor;
     }
 

@@ -114,7 +114,7 @@ export class MedicosComponent implements OnInit {
 
     if (this.desde <= 0) {
       this.desde = 0
-    } else if (this.desde > this.totalMedicos) {
+    } else if (this.desde >= this.totalMedicos) {
       this.desde -= valor;
     }
 
