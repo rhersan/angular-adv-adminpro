@@ -54,7 +54,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     AppRoutingModule,
     SharedModule,
     ComponentsModule,
-    PipesModule
+    PipesModule,
   ],
 })
 export class PagesModule { }
