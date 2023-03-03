@@ -11,12 +11,14 @@ import { AppComponent } from './app.component';
 import { NotpagefoundComponent } from './notpagefound/notpagefound.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './interceptors/interceptor.service';
+import { MedicosComponent } from './intermedio/espias/medicos.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NotpagefoundComponent,
+    MedicosComponent
   ],
   imports: [
     BrowserModule,
