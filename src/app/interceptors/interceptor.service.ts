@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable, throwError, catchError } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,10 @@ export class InterceptorService implements HttpInterceptor {
     console.log('Sucedió un error');
     console.log('Registrado en el log file');
     console.warn(error);
+    Swal.fire('Error',
+                    error.error.msg,
+                    'error'
+                   );
     return throwError(() => new Error('Error personalizado'))
   }
 

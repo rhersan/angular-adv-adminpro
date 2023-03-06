@@ -54,6 +54,7 @@ export class LoginComponent implements AfterViewInit {
 
           },
           error: err => {
+            console.log('Err', err);
             Swal.fire('Error',
                     err.error.msg,
                     'error'
